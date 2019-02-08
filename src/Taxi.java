@@ -2,7 +2,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class Taxi {
-    ArrayList<Taxi> taxiArrayList = new ArrayList<Taxi>();
+    private ArrayList<Taxi> taxiArrayList = new ArrayList<>();
     DecimalFormat decimalFormat = new DecimalFormat("#.0");
     Time time = new Time();
     private double totalPrice;
@@ -20,11 +20,18 @@ public class Taxi {
         this.endTime = endTime;
     }
 
+    public ArrayList<Taxi> getTaxiArrayList() {
+        for (int i = 1; i < taxiArrayList.size() + 1; i++) {
+            System.out.println("Taxi " + i);
+        }
+        return taxiArrayList;
+    }
+
     public void addTaxi(Taxi taxi) {
         taxiArrayList.add(taxi);
     }
 
-    public long startTime() {
+    public long startTime(Taxi taxi) {
         return time.getTime();
     }
 

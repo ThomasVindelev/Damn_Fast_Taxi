@@ -5,6 +5,7 @@ public class Main {
     public static void main(String[] args) {
 
         boolean isOver = false;
+        String taxiChoice;
 
         Taxi taxi = new Taxi();
 
@@ -19,12 +20,16 @@ public class Main {
                     "(6) Add taxi(s)\n" +
                     "Choose a <number> and hit “enter”:");
 
-            Scanner sc = new Scanner(System.in);
-            String choice = sc.nextLine();
+            Scanner scanner = new Scanner(System.in);
+            Scanner taxiScanner = new Scanner(System.in);
+            String choice = scanner.nextLine();
 
             switch (choice) {
                 case "1":
-
+                    taxi.getTaxiArrayList();
+                    System.out.print("Select the taxi you want to start up: ");
+                    taxiChoice = taxiScanner.nextLine();
+                    taxi.startTime(taxi.startTime())
                     break;
                 case "2":
 
