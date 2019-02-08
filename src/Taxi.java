@@ -2,7 +2,6 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class Taxi {
-
     ArrayList<Taxi> taxiArrayList = new ArrayList<Taxi>();
     DecimalFormat decimalFormat = new DecimalFormat("#.0");
     Time time = new Time();
