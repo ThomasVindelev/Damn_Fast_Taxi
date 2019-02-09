@@ -38,7 +38,7 @@ public class Main {
                         }
                         break;
                     } else {
-                        System.out.println("Ingen taxier er oprettet i systemet.");
+                        System.out.println("No taxies have been registered in the system.");
                         break;
                     }
 
@@ -55,17 +55,17 @@ public class Main {
                         chosenTaxi.setEndTime();
 
                         if (chosenTaxi.isInMotion()) {
-                            System.out.println("Turen varede " + decimalFormat.format(((chosenTaxi.getEndTime() - chosenTaxi.getStartTime()) / 100)*0.1) + " sekunder.");
+                            System.out.println("Ride duration " + decimalFormat.format(((chosenTaxi.getEndTime() - chosenTaxi.getStartTime()) / 100)*0.1) + " seconds.");
                             Price price = new Price();
                             String finalPrice = price.calculatePrice(chosenTaxi.getStartTime(), chosenTaxi.getEndTime(), decimalFormat);
-                            System.out.println("Pris: " + finalPrice + " dollars.");
+                            System.out.println("Price: " + finalPrice + " dollars.");
                             chosenTaxi.setMotion(false);
                         } else {
-                            System.out.println("Denne taxi er allerede blevet stoppet.");
+                            System.out.println("This taxi has already been stopped.");
                         }
                         break;
                     } else {
-                        System.out.println("Ingen taxier er oprettet i systemet.");
+                        System.out.println("No taxies have been registered in the system.");
                     }
                 case "3":
                     break;
@@ -83,13 +83,13 @@ public class Main {
                         if (currentChosenTaxi.isInMotion()) {
                             Price priceNow = new Price();
                             String currentPrice = priceNow.calculatePrice(currentChosenTaxi.getStartTime(), currentChosenTaxi.getEndTime(), decimalFormat);
-                            System.out.println("Pris: " + currentPrice + " dollars.");
+                            System.out.println("Price: " + currentPrice + " dollars.");
                         } else {
-                            System.out.println("Denne taxi er allerede blevet stoppet.");
+                            System.out.println("This taxi has already been stopped.");
                         }
                         break;
                     } else {
-                        System.out.println("Ingen taxier er oprettet i systemet.");
+                        System.out.println("No taxies have been registered in the system.");
                         break;
                     }
 
@@ -97,11 +97,11 @@ public class Main {
 
                     break;
                 case "6":
-                    System.out.println("Hvor mange taxier vil du tilføje?");
+                    System.out.println("How many taxies would you like to add?");
                     Scanner taxaNumber = new Scanner(System.in);
                     int number = taxaNumber.nextInt();
                     taxi.addTaxi(number);
-                    System.out.println(number + " " + "Taxa'er tilføjet!");
+                    System.out.println(number + " " + "Taxies have been added!");
                     break;
                 default:
                     isEnd = true;
