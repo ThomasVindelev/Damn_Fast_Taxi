@@ -4,9 +4,9 @@ public class Time {
 
     private double totalTime;
 
-    public String calculateTime(long start, long end, DecimalFormat decimalFormat) {
+    public String calculateTime(long start, long end, long pauseTime, DecimalFormat decimalFormat) {
 
-        totalTime = (end - start) / 100;
+        totalTime = ((end - start) / 100) + pauseTime;
         return decimalFormat.format(totalTime*0.1);
 
     }

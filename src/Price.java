@@ -7,8 +7,8 @@ public class Price {
     private DecimalFormat   costFormat = new DecimalFormat("#.00");
     private Time time =     new Time();
 
-    public String calculatePrice(long start, long end, DecimalFormat decimalFormat) {
-        tempTime = time.calculateTime(start, end, decimalFormat);
+    public String calculatePrice(long start, long end, long pauseTime, DecimalFormat decimalFormat) {
+        tempTime = time.calculateTime(start, end, pauseTime, decimalFormat);
         for (int i = 0; i < tempTime.length(); i++) {
             if (tempTime.charAt(i) == ',') {
                 tempTime = tempTime.substring(0, i) + "." + tempTime.substring(i + 1);
