@@ -5,6 +5,7 @@ public class Main {
 
     public static void main(String[] args) {
         Taxi taxi = new Taxi();
+        Price price = new Price();
         boolean isEnd = false;
         int numberChoice;
         DecimalFormat decimalFormat = new DecimalFormat("#.0");
@@ -58,24 +59,20 @@ public class Main {
 
                         if (chosenTaxi.isInMotion() && !chosenTaxi.isFreeRide()) {
                             System.out.println("Ride duration: " + decimalFormat.format(((((chosenTaxi.getEndTime() - chosenTaxi.getStartTime())) / 100) + chosenTaxi.getPauseTime()) * 0.1) + " seconds.");
-                            Price price = new Price();
                             String finalPrice = price.calculatePrice(chosenTaxi.getStartTime(), chosenTaxi.getEndTime(), chosenTaxi.getPauseTime(), decimalFormat);
                             System.out.println("Price: " + finalPrice + " dollars.");
                             chosenTaxi.setMotion(false);
                             chosenTaxi.resetTaxi();
-                        } else if (((chosenTaxi.isPaused() || !chosenTaxi.isPaused()) && !chosenTaxi.isInMotion()) && !chosenTaxi.isFreeRide()) {
+                        } else if ((chosenTaxi.isPaused() && !chosenTaxi.isInMotion()) && !chosenTaxi.isFreeRide()) {
                             System.out.println("Ride duration: " + decimalFormat.format((chosenTaxi.getPauseTime() * 0.1)) + " seconds.");
-                            Price price = new Price();
                             String finalPrice = price.calculatePrice(0, 0, chosenTaxi.getPauseTime(), decimalFormat);
                             System.out.println("Price: " + finalPrice + " dollars.");
                             chosenTaxi.resetTaxi();
                         } else if (chosenTaxi.isFreeRide()) {
-                            System.out.println(chosenTaxi.getStartTime());
-                            System.out.println(chosenTaxi.getEndTime());
-                            System.out.println(chosenTaxi.getPauseTime());
-                            System.out.println("Ride duration: " + decimalFormat.format(((((chosenTaxi.getEndTime() - chosenTaxi.getStartTime())) / 100)) * 0.1) + " seconds.");
+                            System.out.println("Ride duration: " + decimalFormat.format(((((chosenTaxi.getEndTime() - chosenTaxi.getStartTime())) / 100) + chosenTaxi.getPauseTime() ) * 0.1) + " seconds.");
+                            chosenTaxi.resetTaxi();
                         } else {
-                            System.out.println("This taxi is already stopped");
+                            System.out.println("This taxi is already stopped.");
                         }
                         break;
                     } else {
@@ -91,11 +88,13 @@ public class Main {
 
                         chosenTaxi = taxi.chooseTaxi(numberChoice);
 
-                        if (!chosenTaxi.isPaused()) {
+                        if (!chosenTaxi.isPaused() && chosenTaxi.isInMotion()) {
                             chosenTaxi.setEndTime();
                             chosenTaxi.setPauseTime(chosenTaxi.getStartTime(), chosenTaxi.getEndTime(), chosenTaxi);
-                        } else if (chosenTaxi.isPaused()) {
+                        } else if (chosenTaxi.isPaused() && !chosenTaxi.isInMotion()) {
                             System.out.println("Taxi is already paused.");
+                        } else if (!chosenTaxi.isPaused() && !chosenTaxi.isInMotion()) {
+                            System.out.println("Taxi is not booked.");
                         }
                     }
 
@@ -111,12 +110,10 @@ public class Main {
 
                         currentChosenTaxi.setEndTime();
                         if (currentChosenTaxi.isInMotion()) {
-                            Price priceNow = new Price();
-                            String currentPrice = priceNow.calculatePrice(currentChosenTaxi.getStartTime(), currentChosenTaxi.getEndTime(), currentChosenTaxi.getPauseTime(), decimalFormat);
+                            String currentPrice = price.calculatePrice(currentChosenTaxi.getStartTime(), currentChosenTaxi.getEndTime(), currentChosenTaxi.getPauseTime(), decimalFormat);
                             System.out.println("Price: " + currentPrice + " dollars.");
                         } else if (!currentChosenTaxi.isInMotion() && currentChosenTaxi.isPaused()) {
-                            Price priceNow = new Price();
-                            String currentPrice = priceNow.calculatePrice(0, 0, currentChosenTaxi.getPauseTime(), decimalFormat);
+                            String currentPrice = price.calculatePrice(0, 0, currentChosenTaxi.getPauseTime(), decimalFormat);
                             System.out.println("Price: " + currentPrice + " dollars.");
                         } else {
                             System.out.println("This taxi has already been stopped.");
@@ -136,6 +133,10 @@ public class Main {
 
                         if (!currentChosenTaxi.isFreeRide()) {
                             currentChosenTaxi.setFreeRide(true);
+                            currentChosenTaxi.setStartTime();
+                            currentChosenTaxi.setMotion(true);
+                            currentChosenTaxi.unpauseTime(currentChosenTaxi);
+
                         } else {
                             System.out.println("This taxi is already driving for free");
                         }
