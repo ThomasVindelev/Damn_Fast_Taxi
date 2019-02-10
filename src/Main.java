@@ -8,6 +8,7 @@ public class Main {
         Price price = new Price();
         boolean isEnd = false;
         int numberChoice;
+        String numberOfTaxis;
         DecimalFormat decimalFormat = new DecimalFormat("#.0");
         System.out.println("Welcome to Damn Fast Taxis");
         Scanner taxiNumber = new Scanner(System.in);
@@ -21,6 +22,7 @@ public class Main {
                     "(4) Ask for price\n" +
                     "(5) Free ride\n" +
                     "(6) Add taxi(s)\n" +
+                    "(0) Exit program\n" +
                     "Choose a <number> and hit “enter”:");
 
             Scanner sc = new Scanner(System.in);
@@ -58,18 +60,26 @@ public class Main {
                         chosenTaxi.setEndTime();
 
                         if (chosenTaxi.isInMotion() && !chosenTaxi.isFreeRide()) {
-                            System.out.println("Ride duration: " + decimalFormat.format(((((chosenTaxi.getEndTime() - chosenTaxi.getStartTime())) / 100) + chosenTaxi.getPauseTime()) * 0.1) + " seconds.");
-                            String finalPrice = price.calculatePrice(chosenTaxi.getStartTime(), chosenTaxi.getEndTime(), chosenTaxi.getPauseTime(), decimalFormat);
-                            System.out.println("Price: " + finalPrice + " dollars.");
+                            System.out.println("Damn Fast Taxis\n" +
+                                    "---------------\n" +
+                                    "Time: " + decimalFormat.format(((((chosenTaxi.getEndTime() - chosenTaxi.getStartTime())) / 100) + chosenTaxi.getPauseTime()) * 0.1) + " seconds." + "\n" +
+                                    "Price per second: 2.25 dollars.\n" +
+                                    "Total price: " + price.calculatePrice(chosenTaxi.getStartTime(), chosenTaxi.getEndTime(), chosenTaxi.getPauseTime(), decimalFormat) + " dollars." + "\n");
                             chosenTaxi.setMotion(false);
                             chosenTaxi.resetTaxi();
                         } else if ((chosenTaxi.isPaused() && !chosenTaxi.isInMotion()) && !chosenTaxi.isFreeRide()) {
-                            System.out.println("Ride duration: " + decimalFormat.format((chosenTaxi.getPauseTime() * 0.1)) + " seconds.");
-                            String finalPrice = price.calculatePrice(0, 0, chosenTaxi.getPauseTime(), decimalFormat);
-                            System.out.println("Price: " + finalPrice + " dollars.");
+                            System.out.println("Damn Fast Taxis\n" +
+                                    "---------------\n" +
+                                    "Time: " + decimalFormat.format((chosenTaxi.getPauseTime() * 0.1)) + " seconds." + "\n" +
+                                    "Price per second: 2.25 dollars.\n" +
+                                    "Total price: " + price.calculatePrice(0, 0, chosenTaxi.getPauseTime(), decimalFormat) + " dollars." + "\n");
                             chosenTaxi.resetTaxi();
                         } else if (chosenTaxi.isFreeRide()) {
-                            System.out.println("Ride duration: " + decimalFormat.format(((((chosenTaxi.getEndTime() - chosenTaxi.getStartTime())) / 100) + chosenTaxi.getPauseTime() ) * 0.1) + " seconds.");
+                            System.out.println("Damn Fast Taxis\n" +
+                                    "---------------\n" +
+                                    "Time: " + decimalFormat.format(((((chosenTaxi.getEndTime() - chosenTaxi.getStartTime())) / 100) + chosenTaxi.getPauseTime() ) * 0.1) + " seconds." + "\n" +
+                                    "Price per second: 0 dollars.\n" +
+                                    "Total price: 0 dollars.\n");
                             chosenTaxi.resetTaxi();
                         } else {
                             System.out.println("This taxi is already stopped.");
@@ -104,11 +114,10 @@ public class Main {
                     if (taxi.getTaxiList().size() >= 1) {
 
                         taxi.printTaxis();
-
                         numberChoice = taxiNumber.nextInt();
                         Taxi currentChosenTaxi = taxi.chooseTaxi(numberChoice);
-
                         currentChosenTaxi.setEndTime();
+
                         if (currentChosenTaxi.isInMotion()) {
                             String currentPrice = price.calculatePrice(currentChosenTaxi.getStartTime(), currentChosenTaxi.getEndTime(), currentChosenTaxi.getPauseTime(), decimalFormat);
                             System.out.println("Price: " + currentPrice + " dollars.");
@@ -144,12 +153,21 @@ public class Main {
                     break;
                 case "6":
                     System.out.println("How many taxis would you like to add?");
-                    numberChoice = taxiNumber.nextInt();
-                    taxi.addTaxi(numberChoice);
-                    System.out.println(numberChoice + " taxis have been added!");
+                    numberOfTaxis = taxiNumber.nextLine();
+                    if (numberOfTaxis.matches("[0-50]+")) {
+                        numberChoice = Integer.parseInt(numberOfTaxis);
+                        taxi.addTaxi(numberChoice);
+                        System.out.println(numberOfTaxis + " taxis have been added!\n");
+                    } else {
+                        System.out.println("Not a valid request.");
+                    }
+                    break;
+                case "0":
+                    System.out.println("Program shutting down...");
+                    isEnd = true;
                     break;
                 default:
-                    isEnd = true;
+                    System.out.println("Not a valid request.");
                     break;
             }
         }
