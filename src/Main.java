@@ -33,7 +33,7 @@ public class Main {
                     if (taxi.getTaxiList().size() >= 1) {
                         taxi.printTaxis();
                         tempNumber = taxiNumber.nextLine();
-                        if (!tempNumber.matches(".*[a-zA-Z]+.*")) {
+                        if (tempNumber.matches("[0-9]+")) {
                             numberChoice = Integer.parseInt(tempNumber);
                             chosenTaxi = taxi.chooseTaxi(numberChoice);
                             if (chosenTaxi.isInMotion()) {
@@ -57,7 +57,7 @@ public class Main {
                     if (taxi.getTaxiList().size() >= 1) {
                         taxi.printTaxis();
                         tempNumber = taxiNumber.nextLine();
-                        if (!tempNumber.matches(".*[a-zA-Z]+.*")) {
+                        if (tempNumber.matches("[0-9]+")) {
                             numberChoice = Integer.parseInt(tempNumber);
                             chosenTaxi = taxi.chooseTaxi(numberChoice);
                             chosenTaxi.setEndTime();
@@ -86,7 +86,7 @@ public class Main {
                     if (taxi.getTaxiList().size() >= 1) {
                         taxi.printTaxis();
                         tempNumber = taxiNumber.nextLine();
-                        if (!tempNumber.matches(".*[a-zA-Z]+.*")) {
+                        if (tempNumber.matches("[0-9]+")) {
                             numberChoice = Integer.parseInt(tempNumber);
                             chosenTaxi = taxi.chooseTaxi(numberChoice);
                             if (!chosenTaxi.isPaused() && chosenTaxi.isInMotion()) {
@@ -109,8 +109,8 @@ public class Main {
                     if (taxi.getTaxiList().size() >= 1) {
                         taxi.printTaxis();
                         tempNumber = taxiNumber.nextLine();
-                        if (!tempNumber.matches(".*[a-zA-Z]+.*")) {
-                            numberChoice = taxiNumber.nextInt();
+                        if (tempNumber.matches("[0-9]+")) {
+                            numberChoice = Integer.parseInt(tempNumber);
                             Taxi currentChosenTaxi = taxi.chooseTaxi(numberChoice);
                             currentChosenTaxi.setEndTime();
                             if (currentChosenTaxi.isInMotion()) {
@@ -134,8 +134,8 @@ public class Main {
                     if (taxi.getTaxiList().size() >= 1) {
                         taxi.printTaxis();
                         tempNumber = taxiNumber.nextLine();
-                        if (!tempNumber.matches(".*[a-zA-Z]+.*")) {
-                            numberChoice = taxiNumber.nextInt();
+                        if (tempNumber.matches("[0-9]+")) {
+                            numberChoice = Integer.parseInt(tempNumber);
                             Taxi currentChosenTaxi = taxi.chooseTaxi(numberChoice);
                             if (!currentChosenTaxi.isFreeRide()) {
                                 currentChosenTaxi.setFreeRide(true);
@@ -154,12 +154,16 @@ public class Main {
                     break;
 
                 case "6":
-                    System.out.println("How many taxis would you like to add?");
+                    System.out.println("Enter how many taxis [1-50] you would like to add: ");
                     numberOfTaxis = taxiNumber.nextLine();
-                    if (numberOfTaxis.matches("[0-50]+")) {
+                    if (numberOfTaxis.matches("[0-9]+")) {
                         numberChoice = Integer.parseInt(numberOfTaxis);
-                        taxi.addTaxi(numberChoice);
-                        System.out.println(numberOfTaxis + " taxis have been added!\n");
+                        if (numberChoice > 0 && numberChoice <= 50) {
+                            taxi.addTaxi(numberChoice);
+                            System.out.println(numberOfTaxis + " taxis have been added!\n");
+                        } else {
+                            System.out.println("Not a valid request.");
+                        }
                     } else {
                         System.out.println("Not a valid request.");
                     }
