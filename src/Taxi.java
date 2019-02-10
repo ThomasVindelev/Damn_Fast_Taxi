@@ -38,9 +38,9 @@ public class Taxi {
             if (taxiList.get(i-1).isInMotion() && taxiList.get(i-1).getStartTime() > 0 && !taxiList.get(i-1).isFreeRide()) {
                 System.out.println("Taxi: " + i + " is driving.");
             } else if (taxiList.get(i-1).isPaused && taxiList.get(i-1).getStartTime() > 0 && (!taxiList.get(i-1).isFreeRide() || taxiList.get(i-1).isFreeRide())) {
-                System.out.println("Taxi: " + i + " is paused");
+                System.out.println("Taxi: " + i + " is paused.");
             } else if (taxiList.get(i-1).isFreeRide()) {
-                System.out.println("Taxi: " + i + " is on a free ride");
+                System.out.println("Taxi: " + i + " is on a free ride.");
             } else {
                 System.out.println("Taxi: " + i);
             }
@@ -90,10 +90,6 @@ public class Taxi {
 
     public boolean isPaused() {
         return isPaused;
-    }
-
-    public long getTempTime() {
-        return tempTime;
     }
 
     public long getPauseTime() {
