@@ -39,7 +39,7 @@ public class Main {
                     if (taxi.getTaxiList().size() >= 1) {
                         taxi.printTaxis();
                         tempNumber = taxiNumber.nextLine();
-                        if (tempNumber.matches("[0-9]+")) {
+                        if (tempNumber.matches("[0-9]+") && Integer.parseInt(tempNumber) <= taxi.getTaxiList().size()) {
                             numberChoice = Integer.parseInt(tempNumber);
                             chosenTaxi = taxi.chooseTaxi(numberChoice);
                             if (chosenTaxi.isInMotion()) {
@@ -63,7 +63,7 @@ public class Main {
                     if (taxi.getTaxiList().size() >= 1) {
                         taxi.printTaxis();
                         tempNumber = taxiNumber.nextLine();
-                        if (tempNumber.matches("[0-9]+")) {
+                        if (tempNumber.matches("[0-9]+") && Integer.parseInt(tempNumber) <= taxi.getTaxiList().size()) {
                             numberChoice = Integer.parseInt(tempNumber);
                             chosenTaxi = taxi.chooseTaxi(numberChoice);
                             chosenTaxi.setEndTime();
@@ -92,7 +92,7 @@ public class Main {
                     if (taxi.getTaxiList().size() >= 1) {
                         taxi.printTaxis();
                         tempNumber = taxiNumber.nextLine();
-                        if (tempNumber.matches("[0-9]+")) {
+                        if (tempNumber.matches("[0-9]+") && Integer.parseInt(tempNumber) <= taxi.getTaxiList().size()) {
                             numberChoice = Integer.parseInt(tempNumber);
                             chosenTaxi = taxi.chooseTaxi(numberChoice);
                             if (!chosenTaxi.isPaused() && chosenTaxi.isInMotion()) {
@@ -115,7 +115,7 @@ public class Main {
                     if (taxi.getTaxiList().size() >= 1) {
                         taxi.printTaxis();
                         tempNumber = taxiNumber.nextLine();
-                        if (tempNumber.matches("[0-9]+")) {
+                        if (tempNumber.matches("[0-9]+") && Integer.parseInt(tempNumber) <= taxi.getTaxiList().size()) {
                             numberChoice = Integer.parseInt(tempNumber);
                             Taxi currentChosenTaxi = taxi.chooseTaxi(numberChoice);
                             currentChosenTaxi.setEndTime();
@@ -140,7 +140,7 @@ public class Main {
                     if (taxi.getTaxiList().size() >= 1) {
                         taxi.printTaxis();
                         tempNumber = taxiNumber.nextLine();
-                        if (tempNumber.matches("[0-9]+")) {
+                        if (tempNumber.matches("[0-9]+") && Integer.parseInt(tempNumber) <= taxi.getTaxiList().size()) {
                             numberChoice = Integer.parseInt(tempNumber);
                             Taxi currentChosenTaxi = taxi.chooseTaxi(numberChoice);
                             if (!currentChosenTaxi.isFreeRide() && !currentChosenTaxi.isInMotion()) {

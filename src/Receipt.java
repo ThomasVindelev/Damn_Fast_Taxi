@@ -1,6 +1,6 @@
 public class Receipt {
 
-    double pricePerSecond;
+    private double pricePerSecond;
 
     public void printReceipt(String time, String price, boolean isFreeRide) {
         if (isFreeRide) {

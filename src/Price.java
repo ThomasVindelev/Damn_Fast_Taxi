@@ -2,8 +2,8 @@ import java.text.DecimalFormat;
 
 public class Price {
 
-    private String  tempTime;
-    private double  totalTime;
+    private String          tempTime;
+    private double          totalTime;
     private DecimalFormat   costFormat = new DecimalFormat("#.00");
     private Time time =     new Time();
 

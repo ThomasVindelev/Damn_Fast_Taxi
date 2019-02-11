@@ -3,14 +3,14 @@ import java.util.List;
 
 public class Taxi {
 
-    private long startTime;
-    private long endTime;
-    private long tempTime;
-    private long pauseTime;
-    private boolean isFreeRide = false;
-    private boolean inMotion = false;
-    private boolean isPaused = false;
-    private List<Taxi> taxiList = new ArrayList<>();
+    private long        startTime;
+    private long        endTime;
+    private long        tempTime;
+    private long        pauseTime;
+    private boolean     isFreeRide = false;
+    private boolean     inMotion = false;
+    private boolean     isPaused = false;
+    private List<Taxi>  taxiList = new ArrayList<>();
 
     public void addTaxi(int count) {
         for (int i = 0; i < count; i++) {
