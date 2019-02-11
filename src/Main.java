@@ -9,12 +9,11 @@ public class Main {
         Price price = new Price();
         Receipt receipt = new Receipt();
         DecimalFormat decimalFormat = new DecimalFormat("#.0");
+        Scanner taxiNumber = new Scanner(System.in);
 
         boolean isEnd = false;
         String tempNumber;
-        String numberOfTaxis;
         int numberChoice;
-        Scanner taxiNumber = new Scanner(System.in);
 
         System.out.println("Welcome to Damn Fast Taxis");
 
@@ -164,7 +163,7 @@ public class Main {
 
                 case "6":
                     System.out.println("Enter how many taxis [1-50] you would like to add: ");
-                    numberOfTaxis = taxiNumber.nextLine();
+                    String numberOfTaxis = taxiNumber.nextLine();
                     if (numberOfTaxis.matches("[0-9]+")) {
                         numberChoice = Integer.parseInt(numberOfTaxis);
                         if (numberChoice > 0 && numberChoice <= 50) {
