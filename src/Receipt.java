@@ -1,18 +1,16 @@
 public class Receipt {
 
     public void printReceipt(String time, String price, boolean isFreeRide) {
+        double pricePerSecond;
         if (!isFreeRide) {
-            System.out.println("Damn Fast Taxis\n" +
-                    "---------------\n" +
-                    "Time: " + time + " seconds.\n" +
-                    "Price per second: 2.25 dollars.\n" +
-                    "Total price: " + price + " dollars.\n");
+            pricePerSecond = 0;
         } else {
+            pricePerSecond = 2.25;
+        }
             System.out.println("Damn Fast Taxis\n" +
                     "---------------\n" +
                     "Time: " + time + " seconds.\n" +
-                    "Price per second: 0 dollars.\n" +
+                    "Price per second: " + pricePerSecond + " dollars.\n" +
                     "Total price: " + price + " dollars.\n");
-        }
     }
 }
