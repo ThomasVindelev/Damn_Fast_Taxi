@@ -5,11 +5,11 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Taxi taxi = new Taxi();
-        Price price = new Price();
-        Receipt receipt = new Receipt();
-        DecimalFormat decimalFormat = new DecimalFormat("#.0");
-        Scanner taxiNumber = new Scanner(System.in);
+        Taxi taxi =                         new Taxi();
+        Price price =                       new Price();
+        Receipt receipt =                   new Receipt();
+        DecimalFormat decimalFormat =       new DecimalFormat("#.0");
+        Scanner taxiNumber =                new Scanner(System.in);
 
         boolean isEnd = false;
         String tempNumber;
