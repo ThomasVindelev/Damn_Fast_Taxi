@@ -16,14 +16,17 @@ public class Main {
         Scanner taxiNumber = new Scanner(System.in);
         while (!isEnd) {
             Taxi chosenTaxi;
-            System.out.println("(1) Start a taxi\n" +
+            System.out.println(
+
+                    "(1) Start a taxi\n" +
                     "(2) Stop a taxi\n" +
                     "(3) Pause a ride\n" +
                     "(4) Ask for price\n" +
                     "(5) Free ride\n" +
                     "(6) Add taxi(s)\n" +
                     "(0) Exit program\n" +
-                    "Choose a <number> and hit “enter”:");
+                    "Choose a <number> and hit “enter”:"
+            );
 
             Scanner sc = new Scanner(System.in);
             String choice = sc.nextLine();
