@@ -137,11 +137,13 @@ public class Main {
                         if (tempNumber.matches("[0-9]+")) {
                             numberChoice = Integer.parseInt(tempNumber);
                             Taxi currentChosenTaxi = taxi.chooseTaxi(numberChoice);
-                            if (!currentChosenTaxi.isFreeRide()) {
+                            if (!currentChosenTaxi.isFreeRide() && !currentChosenTaxi.isInMotion()) {
                                 currentChosenTaxi.setFreeRide(true);
                                 currentChosenTaxi.setStartTime();
                                 currentChosenTaxi.setMotion(true);
                                 currentChosenTaxi.unpauseTime(currentChosenTaxi);
+                            } else if (!currentChosenTaxi.isFreeRide() && currentChosenTaxi.isInMotion()) {
+
                             } else {
                                 System.out.println("This taxi is already driving for free");
                             }
