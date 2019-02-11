@@ -4,16 +4,20 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
+
         Taxi taxi = new Taxi();
         Price price = new Price();
         Receipt receipt = new Receipt();
         DecimalFormat decimalFormat = new DecimalFormat("#.0");
+
         boolean isEnd = false;
         String tempNumber;
         String numberOfTaxis;
         int numberChoice;
-        System.out.println("Welcome to Damn Fast Taxis");
         Scanner taxiNumber = new Scanner(System.in);
+
+        System.out.println("Welcome to Damn Fast Taxis");
+
         while (!isEnd) {
             Taxi chosenTaxi;
             System.out.println(
