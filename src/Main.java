@@ -148,8 +148,15 @@ public class Main {
                                 currentChosenTaxi.setStartTime();
                                 currentChosenTaxi.setMotion(true);
                                 currentChosenTaxi.unpauseTime(currentChosenTaxi);
-                            } else if (!currentChosenTaxi.isFreeRide() && currentChosenTaxi.isInMotion()) {
-
+                            } else if (!currentChosenTaxi.isFreeRide() && (currentChosenTaxi.isInMotion() || currentChosenTaxi.isPaused())) {
+                                currentChosenTaxi.setFreeRide(true);
+                                currentChosenTaxi.setStartTime();
+                                currentChosenTaxi.setMotion(true);
+                                currentChosenTaxi.unpauseTime(currentChosenTaxi);
+                            } else if (currentChosenTaxi.isFreeRide() && (!currentChosenTaxi.isInMotion() || currentChosenTaxi.isPaused())) {
+                                currentChosenTaxi.setStartTime();
+                                currentChosenTaxi.setMotion(true);
+                                currentChosenTaxi.unpauseTime(currentChosenTaxi);
                             } else {
                                 System.out.println("This taxi is already driving for free");
                             }
