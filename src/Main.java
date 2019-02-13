@@ -24,7 +24,6 @@ public class Main {
         while (!isEnd) {
             Taxi chosenTaxi;
             System.out.println(
-
                     "(1) Start a taxi\n" +
                     "(2) Stop a taxi\n" +
                     "(3) Pause a ride\n" +
@@ -181,7 +180,11 @@ public class Main {
                         numberChoice = Integer.parseInt(numberOfTaxis);
                         if (numberChoice > 0 && numberChoice <= 50) {
                             taxi.addTaxi(numberChoice);
-                            System.out.println(numberOfTaxis + " taxis have been added!\n");
+                            String taxiText = " taxis";
+                            if (numberChoice == 1) {
+                                taxiText = " taxi";
+                            }
+                            System.out.println(numberOfTaxis + taxiText + " have been added!");
                         } else {
                             System.out.println("Not a valid request.");
                         }
