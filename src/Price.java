@@ -7,6 +7,8 @@ public class Price {
     private DecimalFormat   costFormat = new DecimalFormat("#.00");
     private Time time =     new Time();
 
+    // I metoden herunder får vi en pris tilbage som en String. Da vi kun kan regne med punktummer og ikke kommaer, skal vi derfor udskifte dette.
+
     public String calculatePrice(long start, long end, long pauseTime, DecimalFormat decimalFormat) {
         tempTime = time.calculateTime(start, end, pauseTime, decimalFormat);
         for (int i = 0; i < tempTime.length(); i++) {

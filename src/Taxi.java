@@ -12,12 +12,16 @@ public class Taxi {
     private boolean     isPaused = false;
     private List<Taxi>  taxiList = new ArrayList<>();
 
+    // Tilføjer det antal taxier som bliver parset igennem metoden.
+
     public void addTaxi(int count) {
         for (int i = 0; i < count; i++) {
             Taxi taxi = new Taxi();
             taxiList.add(taxi);
         }
     }
+
+    // Gemmer nuværende i en pausetime, så den har noget at referere til efter taxien er sat igang igen.
 
     public void setPauseTime(long startTime, long endTime, Taxi taxi) {
         tempTime = (endTime - startTime) / 100;
@@ -27,10 +31,14 @@ public class Taxi {
         taxi.isPaused = true;
     }
 
+    // unpauser taxien og sætter tiden igang igen.
+
     public void unpauseTime(Taxi taxi) {
         taxi.setStartTime();
         taxi.isPaused = false;
     }
+
+    // Printer taxi-listen ud.
 
     public void printTaxis() {
         for(int i = 1; i < taxiList.size() + 1; i++) {
@@ -46,6 +54,8 @@ public class Taxi {
             }
         }
     }
+
+    // Genstarter taxiens værdier.
 
     public void resetTaxi() {
         startTime = 0;
@@ -78,6 +88,7 @@ public class Taxi {
 
     public void setStartTime() {
         this.startTime = System.currentTimeMillis();
+        this.inMotion = true;
     }
 
     public void setEndTime() {

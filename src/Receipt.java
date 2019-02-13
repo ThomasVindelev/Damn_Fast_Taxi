@@ -9,9 +9,9 @@ public class Receipt {
             pricePerSecond = 2.25;
         }
             System.out.println("Damn Fast Taxis\n" +
-                    "---------------\n" +
-                    "Time: " + time + " seconds.\n" +
-                    "Price per second: " + pricePerSecond + " dollars.\n" +
-                    "Total price: " + price + " dollars.\n");
+                "---------------\n" +
+                "Time: " + time + " seconds.\n" +
+                "Price per second: " + pricePerSecond + " dollars.\n" +
+                "Total price: " + price + " dollars.\n");
     }
 }
