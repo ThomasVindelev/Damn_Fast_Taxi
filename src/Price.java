@@ -5,7 +5,7 @@ public class Price {
     private String          tempTime;
     private double          totalTime;
     private DecimalFormat   costFormat = new DecimalFormat("#.00");
-    private Time time =     new Time();
+    private Time            time =     new Time();
 
     // I metoden herunder får vi en pris tilbage som en String. Da vi kun kan regne med punktummer og ikke kommaer, skal vi derfor udskifte dette.
 
